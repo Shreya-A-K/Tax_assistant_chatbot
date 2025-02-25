@@ -2,28 +2,27 @@ import os
 import google.generativeai as genai
 import speech_recognition as sr
 import streamlit as st
-from gtts import gTTS
 import pyttsx3
 
 genai.configure(api_key="YOUR_API_KEY")
 
 # Create the model
 generation_config = {
-  "temperature": 0,
-  "top_p": 0.95,
-  "top_k": 40,
-  "max_output_tokens": 8192,
-  "response_mime_type": "application/json",
+    "temperature": 0,
+    "top_p": 0.95,
+    "top_k": 40,
+    "max_output_tokens": 8192,
+    "response_mime_type": "application/json",
 }
 
 model = genai.GenerativeModel(
-  model_name="gemini-2.0-flash",
-  generation_config=generation_config,
-  system_instruction="Tax assistant that can automate tax filing processes, simplifying complex calculations, identifying deductions, and minimizing errors. Answer should be step by step. Maximum of 5 steps can be given.",
+    model_name="gemini-2.0-flash",
+    generation_config=generation_config,
+    system_instruction="Tax assistant that can automate tax filing processes, simplifying complex calculations, identifying deductions, and minimizing errors. Answer should be step by step. Maximum of 5 steps can be given.",
 )
 
 chat_session = model.start_chat(
-  history=[]
+    history=[]
 )
 
 # Initialize recognizer class in order to recognize the speech
